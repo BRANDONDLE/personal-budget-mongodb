@@ -124,6 +124,8 @@ a.skip-main:focus, a.skip-main:active {
     z-index:999;
 }
 
+
+/* Semantic CSS change For Article*/
 .browser {
     background: white;
   }
