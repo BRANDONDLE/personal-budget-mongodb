@@ -69,7 +69,7 @@
             </div>
     
             <div class="text-box">
-                <h1>Free</h1>
+                <h1>Graph</h1>
                 <p>
                     <canvas id ="myChart" width="400" height="400"></canvas>
                 </p>
@@ -106,20 +106,19 @@
         var data = {
             datasets: [
                 {
-                    data: [30, 350, 90],
+                    data: [30,350,90,20,50,300,100],
                     backgroundColor: [
                         '#ffcd56',
                         '#ff6384',
                         '#36a2eb',
-                        '#fd6b19',
+                        '#6DFB33',
+                        '#D28383',
+                        '#2836DF',
+                        '#99586F',
                     ],
                 }
             ],
-            labels: [
-                'Eat out',
-                'Rent',
-                'Groceries'
-            ] 
+            labels: ["Eat out","Rent","Groceries","Entertainment","Subscrptions","Utilities","Savings"] 
         };
 
         function createChart() {
@@ -128,6 +127,17 @@
                 type: 'pie',
                 data: data 
             });
+        }
+        function getBudget(){
+            axios.get('/budget')
+            .then(function (res) {
+                console.log(res);
+                for (var i = 0; i < res.data.length; i++){
+                    data.datasets[0].data[i] = res.data[i].budget;
+                    data.labels[i] = res.data[i].title
+                    createChart();
+                }
+        });
         }
         createChart();
     </script>
